@@ -1,0 +1,39 @@
+import numpy as np 
+ 
+def separate_roots(coefficients): 
+    # Знаходимо всі корені рівняння 
+    all_roots = np.roots(coefficients) 
+     
+    # Відокремлюємо корені за їхнім дійсним та комплексним характером 
+    real_roots = [root for root in all_roots if np.isreal(root)] 
+    complex_roots = [root for root in all_roots if not np.isreal(root)] 
+     
+    return real_roots, complex_roots 
+ 
+# Коефіцієнти рівняння 3x^4 - 4x^3 + x^2 - 2x - 5 = 0 
+coefficients = [3, -4, 1, -2, -5] 
+ 
+# Відокремлення коренів 
+real_roots, complex_roots = separate_roots(coefficients) 
+ 
+print("Реальні корені:", real_roots) 
+print("Комплексні корені:", complex_roots)import numpy as np 
+ 
+def separate_roots(coefficients): 
+    # Знаходимо всі корені рівняння 
+    all_roots = np.roots(coefficients) 
+     
+    # Відокремлюємо корені за їхнім дійсним та комплексним характером 
+    real_roots = [root for root in all_roots if np.isreal(root)] 
+    complex_roots = [root for root in all_roots if not np.isreal(root)] 
+     
+    return real_roots, complex_roots 
+ 
+# Коефіцієнти рівняння 3x^4 - 4x^3 + x^2 - 2x - 5 = 0 
+coefficients = [3, -4, 1, -2, -5] 
+ 
+# Відокремлення коренів 
+real_roots, complex_roots = separate_roots(coefficients) 
+ 
+print("Реальні корені:", real_roots) 
+print("Комплексні корені:", complex_roots)
