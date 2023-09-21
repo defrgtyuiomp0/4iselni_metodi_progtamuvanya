@@ -1,0 +1,23 @@
+def equation(x): 
+    return 3*x**4 - 4*x**3 + x**2 - 2*x - 5 
+ 
+def derivative(x): 
+    return 12*x**3 - 12*x**2 + 2*x - 2 
+ 
+def secant_method(x0, x1, tol, max_iter): 
+    iteration = 0 
+     
+    while abs(equation(x1)) > tol and iteration < max_iter: 
+        x2 = x1 - (x1 - x0) * equation(x1) / (equation(x1) - equation(x0)) 
+        x0 = x1 
+        x1 = x2 
+        iteration += 1 
+     
+    return x1 
+initial_guess1 = -1 
+initial_guess2 = 0 
+tolerance = 1e-6 
+max_iterations = 1000 
+root = secant_method(initial_guess1, initial_guess2, tolerance, max_iterations) 
+ 
+print("Корінь:", root)
