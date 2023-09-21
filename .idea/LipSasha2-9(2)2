@@ -1,0 +1,24 @@
+def equation(x):
+    return 3*x**4 - 4*x**3 + x**2 - 2*x - 5
+
+def bisection_method(a, b, tol):
+    while (b - a) / 2.0 > tol:
+        midpoint = (a + b) / 2.0
+        if equation(midpoint) == 0:
+            return midpoint
+        elif equation(a) * equation(midpoint) < 0:
+            b = midpoint
+        else:
+            a = midpoint
+    return (a + b) / 2.0
+
+# Початковий інтервал для пошуку коренів
+interval = (-2, 2)
+
+# Точність
+tolerance = 1e-6
+
+# Знаходження кореня
+root = bisection_method(interval[0], interval[1], tolerance)
+
+print("Корінь:", root)
