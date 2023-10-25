@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.array([i * 0.15 for i in range(0, 11)])
+y = np.array([0.8607, 0.8187, 0.7788, 0.7408, 0.7046, 0.6703, 0.6376, 0.6065, 0.5769, 0.5488, 0.5220])
+def divided_differences(x, y):
+    n = len(x)
+    f = np.zeros((n, n))
+    f[:, 0] = y
+    for j in range(1, n):
+        for i in range(n - j):
+            f[i, j] = (f[i + 1, j - 1] - f[i, j - 1]) / (x[i + j] - x[i])
+    return f[0]
+def newton_interpolation(x, y, x0):
+    coef = divided_differences(x, y)
+    n = len(x) - 1
+    result = coef[n]
+    for i in range(n - 1, -1, -1):
+        result = result * (x0 - x[i]) + coef[i]
+    return result
+x1 = 0.223
+x2 = 0.554
+y1 = newton_interpolation(x, y, x1)
+y2 = newton_interpolation(x, y, x2)
+print(f"f({x1}) = {y1}")
+print(f"f({x2}) = {y2}")
+xx = np.linspace(np.min(x), np.max(x), 100)
+yy = [newton_interpolation(x, y, xi) for xi in xx]
+plt.plot(x, y, 'o', label='Data Points')
+plt.plot(xx, yy, label='Newton Interpolated Polynomial')
+plt.title("Newton's Interpolation Polynomial")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.show()
